@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyBlog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Ubuntu:400,700' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-brand"><%= link_to "MyBlog", root_path %></div>
+
+      <% if admin_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "New Post", new_post_path %></li>
+          <li><%= link_to "Account", edit_admin_registration_path %></li>
+          <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Admin Login", new_admin_session_path %></li>
+        </ul>
+      <% end %>
+      </div>
+  </nav>
+
+  <div class="container">
+    <% flash.each do |name,msg| %>
+      <%= content_tag :div, msg, class: "alert alert-info" %>
+    <% end %>
+  </div>
+
+   <%= yield %>
+
+</body>
+</html>

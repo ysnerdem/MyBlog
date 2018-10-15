@@ -1,0 +1,19 @@
+<%= form_for @post, html: { multipart: true } do |f| %>
+
+  <div class="form-group">
+    <%= f.file_field :image, input_html: { class: "form-control"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, input_html: { class: "form-control"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content %><br>
+    <%= f.text_field :content, input_html: { class: "form-control"} %>
+  </div>
+
+  <%= f.button :submit, class: "btn btn-primary" %>
+
+<% end %>
